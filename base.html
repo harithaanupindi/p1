@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Google Sign-In API -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Configure Google API Client ID -->
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<style>        /* Style the Google Sign-In button */
+    .g-signin2 {
+            position: absolute;
+            bottom: 20px; /* Adjust the vertical position as needed */
+            left: 50%;
+            transform: translateX(-50%);
+    }
+  /* Style for the location button without borders and box-like outline */
+  .navbar .location-button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+</style>
+</style>
+<body>
+    <body>
+        <!-- Your existing content here -->
+    
+        <!-- Google Sign-In button -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    
+        <!-- JavaScript functions -->
+        <script>
+            function onSignIn(googleUser) {
+                // Handle the sign-in logic here
+                var profile = googleUser.getBasicProfile();
+                console.log("User ID: " + profile.getId());
+            }
+            // Function to open Google Maps with a specific location
+        function openGoogleMapsLocation() {
+            
+            // Replace 'YOUR_LATITUDE' and 'YOUR_LONGITUDE' with the desired coordinates
+            const latitude = 40.753056;
+            const longitude =  -73.983056;
+
+            // Construct the Google Maps URL
+            const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+            // Open the URL in a new browser window or tab
+            window.open(googleMapsUrl, "_blank");
+        }
+    </script>
+        </script>
+    </body>
+    <div class="container-bg">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="ml-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:5000">Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+
+
+
+                       
+                    </li>
+                    <button onclick="openGoogleMapsLocation()">Location</button>
+
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <div class="container-bg">
+        <div class="container">
+            <h1 class="text-center">Pricing Plans</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="text-center">HUFFLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">85 Lakhs Onwards</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">Studio, 2, 2.5 BHK Apartments</li>
+                                <li class="list-group-item">360 sq. ft Onwards</li>
+                                <li class="list-group-item">Amenities: Club House, Jogging Track, Table Tennis, Landscaped Garden</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary" onclick="redirectToRegistration()">Select Plan</button>
+                            <script>
+                                function redirectToRegistration() {
+                                    // Redirect to the registration page
+                                    window.location.href = '/register';
+                                }
+                            </script>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="text-center">RAVEN</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">1.75 CR ONWARDS</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">3 & 4 BHK APARTMENTS</li>
+                                <li class="list-group-item">1150 sq. ft Onwards</li>
+                                <li class="list-group-item">Amenities: Club House, Gymnasium, Swimming Pool, Childrens Play Area</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary">Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="text-center">GRYFF</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">2 CR ONWARDS</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">4 BHK APARTMENTS</li>
+                                <li class="list-group-item">1750 sq. ft Onwards</li>
+                                <li class="list-group-item">Amenities: Club House, Gymnasium, Badminton Court, Yoga Room </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary">Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {%block content %}
+        {% endblock %}
+    </div>
+    <div class="container text-center mt-5">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
