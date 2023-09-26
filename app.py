@@ -56,6 +56,10 @@ def register_user():
 @app.route('/thank_you')
 def thank_you():
     return render_template('thankyou.html')
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 
 if __name__ == '__main__':
     with app.app_context():

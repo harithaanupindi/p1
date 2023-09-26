@@ -14,7 +14,7 @@
 <style>        /* Style the Google Sign-In button */
     .g-signin2 {
             position: absolute;
-            bottom: 20px; /* Adjust the vertical position as needed */
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
     }
@@ -29,7 +29,6 @@
 </style>
 <body>
     <body>
-        <!-- Your existing content here -->
     
         <!-- Google Sign-In button -->
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -44,7 +43,7 @@
             // Function to open Google Maps with a specific location
         function openGoogleMapsLocation() {
             
-            // Replace 'YOUR_LATITUDE' and 'YOUR_LONGITUDE' with the desired coordinates
+
             const latitude = 40.753056;
             const longitude =  -73.983056;
 
@@ -62,20 +61,19 @@
             <div class="ml-auto">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:5000">Home</a>
+                        
                     </li>
                     
                     <li class="nav-item">
-
-
-
-                       
                     </li>
                     <button onclick="openGoogleMapsLocation()">Location</button>
-
-                    
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <!-- Contact Us button -->
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                </li>
+                
                     </li>
                 </ul>
             </div>
@@ -161,8 +159,6 @@
         </div>
     </div>
     <div class="container">
-        {%block content %}
-        {% endblock %}
     </div>
     <div class="container text-center mt-5">
     </div>
