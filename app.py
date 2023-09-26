@@ -5,15 +5,15 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 
 # Configure your SQLAlchemy database URI here
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Hillgrange@localhost:5433/Register'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Hillgrange@localhost:5433/Registration'  # Database name is "Registration"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Create the SQLAlchemy database instance
 db = SQLAlchemy(app)
 
 # Define your models
-class Register(db.Model):
-    __tablename__ = 'register'  # Specify the table name explicitly
+class Registration(db.Model):
+    __tablename__ = 'registration'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
@@ -39,17 +39,18 @@ def register_user():
         phone = request.form.get('phone')
 
         # Create a Registration instance and add it to the database
-        registration = Register(name=name, email=email, phone=phone)
+        registration = Registration(name=name, email=email, phone=phone)
 
         try:
             db.session.add(registration)
             db.session.commit()
-            return redirect(url_for('thank_you'))
+            return redirect(url_for('thank_you'))  # Redirect to the thank you page
         except Exception as e:
             db.session.rollback()
             print("Error:", str(e))
             return "An error occurred while saving the data."
 
+    # Handle GET requests or errors by rendering the registration form again
     return render_template('registrations.html')
 
 @app.route('/thank_you')
@@ -57,5 +58,6 @@ def thank_you():
     return "Thank you for registering!"
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
